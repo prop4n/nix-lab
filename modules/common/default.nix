@@ -13,5 +13,26 @@
 
   environment.systemPackages = with pkgs; [ git vim curl ];
 
+  users.mutableUsers = false;
+  users.users.${vars.adminUser} = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [ vars.adminSshKey ];
+  };
+  security.sudo.wheelNeedsPassword = false;
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  networking.firewall.enable = true;
+  networking.nftables.enable = true;
+  networking.firewall.allowedTCPPorts = [ 22 ];
+
   system.stateVersion = "25.05";
 }
