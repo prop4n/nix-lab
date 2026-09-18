@@ -1,0 +1,10 @@
+result
+result-*
+.direnv/
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+# clés privées — ne JAMAIS committer
+*.age
+keys/
