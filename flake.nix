@@ -28,5 +28,16 @@
       nixosConfigurations = {
         node01 = mkHost "node01" [ ];
       };
+
+      packages.${system}.proxmox-template = nixos-generators.nixosGenerate {
+        inherit system;
+        format = "proxmox";
+        specialArgs = { inherit inputs vars; };
+        modules = [
+          comin.nixosModules.comin
+          sops-nix.nixosModules.sops
+          ./images/proxmox-template.nix
+        ];
+      };
     };
 }
