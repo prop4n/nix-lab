@@ -26,6 +26,17 @@ pkgs.testers.runNixOSTest {
     # /dev/null, et `authKeyFile` est forcé de la même façon.
     sops.secrets."headscale/preauthkey".path = lib.mkForce "/dev/null";
     services.tailscale.authKeyFile = lib.mkForce "/dev/null";
+    # Le secret reste déclaré (eval-safe, cf. ci-dessus), mais on supprime les
+    # deux chemins par lesquels sops-nix tenterait un vrai déchiffrement au
+    # boot (activation script ET service systemd) : la sandbox de test n'a
+    # pas de clé age, donc rien ne doit essayer de déchiffrer quoi que ce
+    # soit. `system.activationScripts.setupSecrets` est un `mkIf cond
+    # (stringAfter deps text)` : sa condition s'évalue sans forcer le
+    # contenu du secret, et `stringAfter` produit un attrset brut (pas de
+    # `_type`), donc le `mkForce ""` ici ne redéclenche pas le crash WHNF vu
+    # plus haut.
+    system.activationScripts.setupSecrets = lib.mkForce "";
+    systemd.services.sops-install-secrets.enable = lib.mkForce false;
   };
   testScript = ''
     machine.wait_for_unit("multi-user.target")
