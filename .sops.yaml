@@ -1,0 +1,9 @@
+keys:
+  - &admin age1ktu5rr66z6j7f3gwg34l4egr4tjxj79vgdmu6n5m772lyg7gsc3sau0hpg
+  - &node01 age1qupfdxu42m2e4uae9tt8rsq7zzs5y4alzlgzwdl9sw6k7044pdgq92fxmj
+creation_rules:
+  - path_regex: secrets/secrets\.yaml$
+    key_groups:
+      - age:
+          - *admin
+          - *node01

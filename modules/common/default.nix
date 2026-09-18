@@ -1,6 +1,6 @@
 { lib, pkgs, vars, ... }:
 {
-  imports = [ ./comin.nix ];
+  imports = [ ./comin.nix ./sops.nix ];
 
   time.timeZone = vars.timeZone;
   i18n.defaultLocale = "en_US.UTF-8";
