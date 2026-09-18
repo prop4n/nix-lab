@@ -1,6 +1,6 @@
 { lib, pkgs, vars, ... }:
 {
-  imports = [ ./comin.nix ./sops.nix ];
+  imports = [ ./comin.nix ./sops.nix ./tailnet-client.nix ];
 
   time.timeZone = vars.timeZone;
   i18n.defaultLocale = "en_US.UTF-8";
