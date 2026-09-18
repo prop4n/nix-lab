@@ -50,5 +50,8 @@
       };
 
       packages.${system}.image-node01 = mkProxmoxImage "node01";
+
+      checks.${system}.node01-boot =
+        import ./tests/node01-boot.nix { inherit pkgs inputs vars; };
     };
 }
