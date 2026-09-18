@@ -1,0 +1,10 @@
+#cloud-config
+# L'identite (hostname, config comin) est bakee dans l'image node01 au build
+# (services.comin.hostname). Cloud-init ne provisionne ici que la cle age
+# privee necessaire a sops-nix pour dechiffrer les secrets au demarrage.
+write_files:
+  - path: /var/lib/sops-nix/key.txt
+    permissions: "0600"
+    owner: root:root
+    content: |
+      ${indent(6, age_key)}

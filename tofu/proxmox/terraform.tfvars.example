@@ -1,0 +1,5 @@
+pve_endpoint   = "https://CHANGEME_PVE:8006/"
+pve_api_token  = "root@pam!tofu=CHANGEME_TOKEN"
+pve_node       = "pve"
+template_id    = 9000
+node01_age_key = "AGE-SECRET-KEY-CHANGEME"
