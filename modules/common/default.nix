@@ -34,5 +34,5 @@
   networking.nftables.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }
