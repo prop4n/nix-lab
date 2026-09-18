@@ -5,6 +5,9 @@ result-*
 *.tfstate.*
 .terraform/
 .terraform.lock.hcl
+# secrets terraform — ne JAMAIS committer (garder les .example)
+*.tfvars
+!*.tfvars.example
 # clés privées — ne JAMAIS committer
 *.age
 keys/
