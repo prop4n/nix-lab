@@ -11,6 +11,15 @@ provider "proxmox" {
   endpoint  = var.pve_endpoint
   api_token = var.pve_api_token
   insecure  = true
+
+  # L'upload des snippets (cloud-init user-data) passe par SSH/SFTP sur le node,
+  # pas par l'API. Par défaut on utilise l'agent SSH ; sinon renseigner
+  # pve_ssh_private_key dans terraform.tfvars.
+  ssh {
+    username    = var.pve_ssh_username
+    agent       = var.pve_ssh_private_key == ""
+    private_key = var.pve_ssh_private_key == "" ? null : var.pve_ssh_private_key
+  }
 }
 
 resource "proxmox_virtual_environment_file" "node01_ci" {

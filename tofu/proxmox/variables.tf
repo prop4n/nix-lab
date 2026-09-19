@@ -24,3 +24,16 @@ variable "node01_age_key" {
   sensitive   = true
   description = "Contenu de keys/node01.age (cle age privee pour sops-nix)"
 }
+
+variable "pve_ssh_username" {
+  type        = string
+  default     = "root"
+  description = "Utilisateur SSH sur le node PVE (upload des snippets cloud-init)"
+}
+
+variable "pve_ssh_private_key" {
+  type        = string
+  sensitive   = true
+  default     = ""
+  description = "Cle privee SSH pour le node PVE. Vide => utilise l'agent SSH."
+}

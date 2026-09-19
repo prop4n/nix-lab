@@ -3,3 +3,9 @@ pve_api_token  = "root@pam!tofu=CHANGEME_TOKEN"
 pve_node       = "pve"
 template_id    = 9000
 node01_age_key = "AGE-SECRET-KEY-CHANGEME"
+
+# SSH vers le node PVE (upload des snippets cloud-init).
+# Par defaut agent SSH (assure-toi que ta cle est chargee : ssh-add).
+pve_ssh_username = "root"
+# Sinon, decommente et fournis une cle privee (contenu, pas chemin) :
+# pve_ssh_private_key = "-----BEGIN OPENSSH PRIVATE KEY-----\n...\n-----END OPENSSH PRIVATE KEY-----\n"
