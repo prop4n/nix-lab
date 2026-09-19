@@ -13,6 +13,10 @@
 
   environment.systemPackages = with pkgs; [ git vim curl ];
 
+  # VM serveur headless : pas de docs Info/man (allège l'image et évite la
+  # génération du répertoire Info `dir` par buildEnv, cassée dans cet env).
+  documentation.info.enable = false;
+
   users.mutableUsers = false;
   users.users.${vars.adminUser} = {
     isNormalUser = true;
