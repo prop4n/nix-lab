@@ -77,7 +77,8 @@ resource "proxmox_virtual_environment_vm" "node01" {
 
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = var.node01_ip
+        gateway = var.node01_ip == "dhcp" ? null : var.node01_gateway
       }
     }
   }

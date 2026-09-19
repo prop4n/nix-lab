@@ -44,3 +44,15 @@ variable "pve_ssh_password" {
   default     = ""
   description = "Mot de passe SSH du node PVE (si tu te connectes en mdp). Prioritaire sur l'agent."
 }
+
+variable "node01_ip" {
+  type        = string
+  default     = "dhcp"
+  description = "IP de node01 en CIDR (ex: 192.168.1.201/24), ou 'dhcp'."
+}
+
+variable "node01_gateway" {
+  type        = string
+  default     = ""
+  description = "Passerelle de node01 (ex: 192.168.1.1), requise si IP statique."
+}

@@ -25,6 +25,10 @@
   };
   security.sudo.wheelNeedsPassword = false;
 
+  # Mot de passe root pour la console (filet de secours si le SSH est HS).
+  # null = verrouille. Cf. vars.rootHashedPassword.
+  users.users.root.hashedPassword = vars.rootHashedPassword;
+
   services.openssh = {
     enable = true;
     settings = {
