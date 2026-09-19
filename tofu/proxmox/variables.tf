@@ -35,5 +35,12 @@ variable "pve_ssh_private_key" {
   type        = string
   sensitive   = true
   default     = ""
-  description = "Cle privee SSH pour le node PVE. Vide => utilise l'agent SSH."
+  description = "Cle privee SSH pour le node PVE. Vide => agent SSH."
+}
+
+variable "pve_ssh_password" {
+  type        = string
+  sensitive   = true
+  default     = ""
+  description = "Mot de passe SSH du node PVE (si tu te connectes en mdp). Prioritaire sur l'agent."
 }

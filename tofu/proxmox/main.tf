@@ -17,8 +17,9 @@ provider "proxmox" {
   # pve_ssh_private_key dans terraform.tfvars.
   ssh {
     username    = var.pve_ssh_username
-    agent       = var.pve_ssh_private_key == ""
+    password    = var.pve_ssh_password == "" ? null : var.pve_ssh_password
     private_key = var.pve_ssh_private_key == "" ? null : var.pve_ssh_private_key
+    agent       = var.pve_ssh_password == "" && var.pve_ssh_private_key == ""
   }
 }
 
