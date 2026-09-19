@@ -20,7 +20,18 @@ provider "proxmox" {
     password    = var.pve_ssh_password == "" ? null : var.pve_ssh_password
     private_key = var.pve_ssh_private_key == "" ? null : var.pve_ssh_private_key
     agent       = var.pve_ssh_password == "" && var.pve_ssh_private_key == ""
+
+    # Force le SSH vers l'IP de l'endpoint (la ou tu joins reellement le PVE),
+    # au lieu de l'adresse que l'API rapporte pour le node (souvent injoignable).
+    node {
+      name    = var.pve_node
+      address = local.pve_host
+    }
   }
+}
+
+locals {
+  pve_host = regex("^https?://([^:/]+)", var.pve_endpoint)[0]
 }
 
 resource "proxmox_virtual_environment_file" "node01_ci" {
